@@ -1,77 +1,82 @@
 
 
 export default function Registro() {
-  return (
-    <>
-        <h1 className="text-4xl font-black">Crea tu cuenta</h1>
-        <p>Crea tu cuetna llenando el formulario</p>
+    return (
+        <>
+            <div className="bg-white mt-10 px-5 py-10">
+                <div className="mb-7">
 
-        <div className="bg-white shadow-md rounded-md mt-10 px-5 py-10">
-            <form>
-
-                <div className="mb-4">
-                    <label
-                        className="text-slate-800"
-                        htmlFor="name"
-                    >Nombre:</label>
-                    <input 
-                        type="text" 
-                        id="name"
-                        className="mt-2 w-full p-3 bg-gray-50"
-                        name="name"
-                        placeholder="Tu Nombre"
-                    />
+                    <h1 className="text-4xl font-black text-center">Crea tu cuenta</h1>
+                    <p className="text-center">Crea tu cuenta llenando el formulario</p>
                 </div>
 
-                <div className="mb-4">
-                    <label
-                        className="text-slate-800"
-                        htmlFor="email"
-                    >Email:</label>
-                    <input 
-                        type="email" 
-                        id="email"
-                        className="mt-2 w-full p-3 bg-gray-50"
-                        name="email"
-                        placeholder="Tu Email"
-                    />
-                </div>
+                <form>
 
-                <div className="mb-4">
-                    <label
-                        className="text-slate-800"
-                        htmlFor="password"
-                    >Password:</label>
-                    <input 
-                        type="password" 
-                        id="password"
-                        className="mt-2 w-full p-3 bg-gray-50"
-                        name="password"
-                        placeholder="Tu Passowrd"
-                    />
-                </div>
+                    <div className="mb-4">
+                        <label
+                            className="text-slate-800 font-semibold"
+                            htmlFor="name"
+                        >Nombre:</label>
+                        <input
+                            type="text"
+                            id="name"
+                            className="mt-2 w-full p-3 bg-gray-50"
+                            name="name"
+                            placeholder="Nombre"
+                        />
+                    </div>
 
-                <div className="mb-4">
-                    <label
-                        className="text-slate-800"
-                        htmlFor="password_confirmation"
-                    >Repetir Password:</label>
-                    <input 
-                        type="password" 
-                        id="password_confirmation"
-                        className="mt-2 w-full p-3 bg-gray-50"
-                        name="password_confirmation"
-                        placeholder="Repetir Passowrd"
-                    />
-                </div>
+                    <div className="mb-4">
+                        <label
+                            className="text-slate-800 font-semibold"
+                            htmlFor="email"
+                        >Email:</label>
+                        <input
+                            type="email"
+                            id="email"
+                            className="mt-2 w-full p-3 bg-gray-50"
+                            name="email"
+                            placeholder="Email"
+                        />
+                    </div>
 
-                <input
-                    type="submit"
-                    value="Crear Cuenta"
-                    className="bg-indigo-600 hover:bg-indigo-800 text-white w-full mt-5 p-3 uppercase font-bold cursor-pointer"
-                />
-            </form>
-        </div>
-    </>
-  )
+                    <div className="mb-4">
+                        <label
+                            className="text-slate-800 font-semibold"
+                            htmlFor="password"
+                        >Contraseña:</label>
+                        <input
+                            type="password"
+                            id="password"
+                            className="mt-2 w-full p-3 bg-gray-50"
+                            name="password"
+                            placeholder="Contraseña"
+                        />
+                    </div>
+
+                    <div className="mb-4">
+                        <label
+                            className="text-slate-800 font-semibold"
+                            htmlFor="password_confirmation"
+                        >Confirmar Contraseña:</label>
+                        <input
+                            type="password"
+                            id="password_confirmation"
+                            className="mt-2 w-full p-3 bg-gray-50"
+                            name="password_confirmation"
+                            placeholder="Confirmar contraseña"
+                        />
+                    </div>
+
+                    <div className="flex justify-center items-center">
+                        <input
+                            type="submit"
+                            value="Crear Cuenta"
+                            className="bg-indigo-600 hover:bg-indigo-800 text-white w-full mt-5 p-3 uppercase font-bold cursor-pointer rounded transition duration-500 ease-in-out transform hover:-translate-x hover:scale-105"
+                        />
+                    </div>
+                </form>
+            </div>
+        </>
+    )
 }
