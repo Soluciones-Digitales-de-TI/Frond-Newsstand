@@ -6,7 +6,7 @@ export default function Login() {
 
         <div className="mb-7">
           <h1 className="text-4xl font-black text-center">Iniciar Sesión</h1>
-          <p className="text-lg text-center"><span className="font-semibold">¡Bienvenido de devuelta!</span> Por favor ingresa tu cuenta.</p>
+          <p className="text-lg text-center"><span className="font-semibold">¡Bienvenido de vuelta!</span> Por favor ingresa tu cuenta.</p>
         </div>
         <form>
 
