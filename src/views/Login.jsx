@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 export default function Login() {
   return (
@@ -89,9 +90,9 @@ export default function Login() {
           <nav className="mt-7">
             <div className="flex justify-center items-center">
                 <label className="mr-2" >¿Eres nuevo?</label>
-                <a href="/auth/registro" className=" text-indigo-600 hover:text-indigo-800 transition duration-500 ease-in-out transform hover:-translate-x hover:scale-105">
+                <Link to="/auth/registro" className=" text-indigo-600 hover:text-indigo-800 transition duration-500 ease-in-out transform hover:-translate-x hover:scale-105">
                   Crea una cuenta
-                </a>
+                </Link>
             </div>
           </nav>
 
