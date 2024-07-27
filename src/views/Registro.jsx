@@ -77,6 +77,15 @@ export default function Registro() {
                     </div>
                 </form>
             </div>
+
+            <nav className="mt-1">
+                <div className="flex justify-center items-center">
+                    <label className="mr-2">¿Ya tienes cuenta?</label>
+                    <a href="/auth/login" className="text-indigo-600 hover:text-indigo-800 transition duration-500 ease-in-out transform hover:-translate-x hover:scale-105">
+                        Iniciar Sesión
+                    </a>
+                </div>
+            </nav>
         </>
     )
 }

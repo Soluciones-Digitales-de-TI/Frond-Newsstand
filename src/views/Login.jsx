@@ -81,18 +81,20 @@ export default function Login() {
           <div className="flex justify-center items-center">
             <input
               type="submit"
-              value="Crear Cuenta"
+              value="Iniciar Sesión"
               className="bg-indigo-600 hover:bg-indigo-800 text-white w-full mt-5 p-3 uppercase font-bold cursor-pointer rounded transition duration-500 ease-in-out transform hover:-translate-x hover:scale-105"
             />
           </div>
-          <div className="mt-7">
+
+          <nav className="mt-7">
             <div className="flex justify-center items-center">
-              <label className="mr-2" >¿Eres nuevo?</label>
-              <a href="#" className=" text-indigo-600 hover:text-indigo-800 transition duration-500 ease-in-out transform hover:-translate-x hover:scale-105">
-                Crea una cuenta
-              </a>
+                <label className="mr-2" >¿Eres nuevo?</label>
+                <a href="/auth/registro" className=" text-indigo-600 hover:text-indigo-800 transition duration-500 ease-in-out transform hover:-translate-x hover:scale-105">
+                  Crea una cuenta
+                </a>
             </div>
-          </div>
+          </nav>
+
         </form>
       </div>
     </>
