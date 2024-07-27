@@ -4,7 +4,7 @@ import Sidebar from "../components/Sidebar"
 
 export default function Inicio() {
 
-  console.log(productos)
+  // console.log(productos)
 
   return (
     <div className="flex">
