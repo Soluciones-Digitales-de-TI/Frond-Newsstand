@@ -1,3 +1,4 @@
+import { formatearDinero } from "../helpers";
 
 export default function Producto({producto}) {
   const { imagen, nombre, precio } = producto;
@@ -9,18 +10,22 @@ export default function Producto({producto}) {
     <div className="border rounded-lg p-4 shadow-md">
       <img
         src={imageUrl}
-        alt={nombre}
+        alt={`imagen ${nombre}`}
         className="w-full h-40 object-cover rounded-md"
       />
-      <h2 className="text-xl font-semibold mt-2">{nombre}</h2>
-      <p className="text-lg text-gray-600 mt-1">${precio.toFixed(2)}</p>
+
+      <div className="p-5">
+        <h3 className="text-xl font-bold">{nombre}</h3>
+        <p className="mt-2 font-black text-.5xl text-amber-500">{formatearDinero(precio)}</p>
+      </div>
+      
       <button
         type="submit"
-        className="bg-indigo-600 hover:bg-indigo-800 text-white w-full mt-5 p-3 uppercase font-bold cursor-pointer rounded transition duration-500 ease-in-out transform hover:-translate-x hover:scale-105"
+        className="bg-indigo-600 hover:bg-indigo-800 text-white w-full mt-3 p-3 uppercase font-bold cursor-pointer rounded transition duration-500 ease-in-out transform hover:-translate-x hover:scale-105"
       >
         Agregar
-
       </button>
+
     </div>
   );
 }

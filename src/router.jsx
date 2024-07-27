@@ -29,10 +29,6 @@ const router = createBrowserRouter([
                 element: <Registro />
             }
         ]
-    },
-    {
-        path: '/inicio',
-        element: <Inicio/>,
     }
 ])
 

@@ -8,7 +8,6 @@ export default function Inicio() {
 
   return (
     <div className="flex">
-      <Sidebar className="w-64 h-screen bg-gray-200" />
 
       <div className="flex-1 p-4">
       <h1 className="text-4xl from-black">Inicio</h1>
