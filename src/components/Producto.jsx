@@ -3,7 +3,6 @@ import { formatearDinero } from "../helpers";
 export default function Producto({producto}) {
   const { imagen, nombre, precio } = producto;
 
-  console.log(producto)
   const imageUrl = `/img/${imagen}.jpg`;
 
   return (
