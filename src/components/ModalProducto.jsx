@@ -21,8 +21,8 @@ export default function ModalProducto() {
         <div className="md:flex gap-10">
             <div className="md:w-1/3">
                 <img 
-                    alt={`Imagen producto ${producto.nombre}`} 
-                    src={`/img/${producto.imagen}.jpg`}
+                    alt={`Imagen producto ${producto.name}`} 
+                    src={`/img/${producto.image}.jpg`}
                 />
             </div>
 
@@ -36,11 +36,11 @@ export default function ModalProducto() {
                 </div>
 
                 <h1 className="text-3xl font-bold mt-5">
-                    {producto.nombre}
+                    {producto.name}
                 </h1>
 
                 <p className="mt-5 font-black text-5xl text-amber-500">
-                    {formatearDinero(producto.precio)}
+                    {formatearDinero(producto.price)}
                 </p>
 
                 <div className="flex gap-4 mt-5">

@@ -4,21 +4,21 @@ import useQuiosco from "../hooks/useQuiosco";
 export default function Producto({producto}) {
 
   const { handleClickModal, handleSetProducto } = useQuiosco();
-  const { imagen, nombre, precio } = producto;
+  const { image, name, price } = producto;
 
-  const imageUrl = `/img/${imagen}.jpg`;
+  const imageUrl = `/img/${image}.jpg`;
 
   return (
     <div className="border rounded-lg p-4 shadow-md">
       <img
         src={imageUrl}
-        alt={`imagen ${nombre}`}
+        alt={`imagen ${name}`}
         className="w-full h-40 object-cover rounded-md"
       />
 
       <div className="p-5">
-        <h3 className="text-xl font-bold">{nombre}</h3>
-        <p className="mt-2 font-black text-.5xl text-amber-500">{formatearDinero(precio)}</p>
+        <h3 className="text-xl font-bold">{name}</h3>
+        <p className="mt-2 font-black text-.5xl text-amber-500">{formatearDinero(price)}</p>
       </div>
       
       <button

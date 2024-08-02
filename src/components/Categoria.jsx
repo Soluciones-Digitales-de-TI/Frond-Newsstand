@@ -3,7 +3,7 @@ import useQuiosco from "../hooks/useQuiosco"
 export default function Categoria({categoria}) {
 
     const {handleClickCategoria, categoriaActual} = useQuiosco();
-    const {icono, id, nombre} = categoria
+    const {icon, id, name} = categoria
 
     const resaltarCategoriaActual = () => categoriaActual.id == id ? 'bg-amber-400' : 'bg-white'
 
@@ -12,7 +12,7 @@ export default function Categoria({categoria}) {
 
         <img 
             className="w-12"
-            src={`/img/icono_${icono}.svg`} 
+            src={`/img/icono_${icon}.svg`} 
             alt="Imagen icono" 
         />
 
@@ -21,7 +21,7 @@ export default function Categoria({categoria}) {
           type="button"
           onClick={() => handleClickCategoria(id)}
         >
-          {nombre}
+          {name}
         </button>
 
     </div>

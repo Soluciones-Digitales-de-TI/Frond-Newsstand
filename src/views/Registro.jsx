@@ -1,16 +1,44 @@
+import { createRef, useState } from "react"
 import { Link } from "react-router-dom"
+import Alerta from "../components/Alerta";
+import { useAuth } from "../hooks/useAuth";
 
 export default function Registro() {
+
+    const nameRef = createRef();
+    const emailRef = createRef();
+    const passwordRef = createRef();
+    const passwordConfirmationRef = createRef();
+
+    const [errores, setErrores] = useState([])
+    const {register} = useAuth({middleware: 'guest', url: '/'})
+
+    const handleSubmit = async e => {
+        e.preventDefault();
+
+        const datos = {
+            name: nameRef.current.value,
+            email: emailRef.current.value,
+            password: passwordRef.current.value,
+            password_confirmation: passwordConfirmationRef.current.value
+        }
+       register(datos, setErrores)
+    }
+
     return (
         <>
             <div className="bg-white mt-10 px-5 py-10">
-                <div className="mb-7">
-
+                <div className="mt-10">
                     <h1 className="text-4xl font-black text-center">Crea tu cuenta</h1>
                     <p className="text-center">Crea tu cuenta llenando el formulario</p>
                 </div>
 
-                <form>
+                <form
+                    onSubmit={handleSubmit}
+                    noValidate
+                >
+
+                    { errores ? errores.map((error, i) => <Alerta key={i}>{error}</Alerta>) : null }
 
                     <div className="mb-4">
                         <label
@@ -23,6 +51,7 @@ export default function Registro() {
                             className="mt-2 w-full p-3 bg-gray-50"
                             name="name"
                             placeholder="Nombre"
+                            ref={nameRef}
                         />
                     </div>
 
@@ -37,6 +66,7 @@ export default function Registro() {
                             className="mt-2 w-full p-3 bg-gray-50"
                             name="email"
                             placeholder="Email"
+                            ref={emailRef}
                         />
                     </div>
 
@@ -50,7 +80,8 @@ export default function Registro() {
                             id="password"
                             className="mt-2 w-full p-3 bg-gray-50"
                             name="password"
-                            placeholder="Contraseña"
+                            placeholder="Tu Contraseña"
+                            ref={passwordRef}
                         />
                     </div>
 
@@ -65,6 +96,7 @@ export default function Registro() {
                             className="mt-2 w-full p-3 bg-gray-50"
                             name="password_confirmation"
                             placeholder="Confirmar contraseña"
+                            ref={passwordConfirmationRef}
                         />
                     </div>
 

@@ -1,22 +1,41 @@
 import { createContext, useState, useEffect } from "react"
 import { toast } from "react-toastify";
-import { categorias as categoriasDB} from "../data/categorias"
+import clienteAxios from "../config/axios";
 
 const QuioscoContext = createContext();
 
 const QuioscoProvider = ({children}) => {
 
-    const [categorias, setCategorias ] = useState(categoriasDB);
-    const [categoriaActual, setCategoriaActual] = useState(categorias[0])
+    const [categorias, setCategorias ] = useState([]);
+    const [categoriaActual, setCategoriaActual] = useState({})
     const [modal, setModal] = useState(false)
     const [producto, setProducto] = useState({})
     const [pedido, setPedido] = useState([])
     const [total, setTotal] = useState(0)
 
     useEffect(() => {
-        const nuevoTotal = pedido.reduce( (total, producto) => (producto.precio * producto.cantidad) + total, 0 )
+        const nuevoTotal = pedido.reduce( (total, producto) => (producto.price * producto.cantidad) + total, 0 )
         setTotal(nuevoTotal)
     }, [pedido])
+
+    const obtenerCategorias = async () => {
+        try {
+            const token = localStorage.getItem('AUTH_TOKEN')
+            const {data} = await clienteAxios('/api/v1/categories', {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+            setCategorias(data.data.models)
+            setCategoriaActual(data.data.models[0])
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    useEffect(() => {
+        obtenerCategorias();
+    }, [])
 
     const handleClickCategoria = id => {
         const categoria = categorias.filter(categoria => categoria.id === id)[0]
@@ -54,6 +73,48 @@ const QuioscoProvider = ({children}) => {
         toast.success('Eliminado del Pedido')
     }
 
+    const handleSubmitNuevaOrden = async () => {
+        const token = localStorage.getItem('AUTH_TOKEN')
+        const statusDefault = 1
+        try {
+            const response = await clienteAxios.post('/api/v1/orders', 
+            {
+                total,
+                status: statusDefault
+            },
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+            const orderId = response.data.data.id
+
+            for (const producto of pedido) {
+                const orderProduct = {
+                    order_id: orderId,
+                    product_id: producto.id,
+                    cantidad: producto.cantidad
+                };
+
+                await clienteAxios.post('/api/v1/ordersproducts', 
+                orderProduct,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                });
+            }
+
+            toast.success('Pedido realizado correctamene, estará listo en unos minutos')
+            setTimeout(() => {
+                setPedido([])
+            }, 1000);
+
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     return(
         <QuioscoContext.Provider
             value={{
@@ -68,7 +129,8 @@ const QuioscoProvider = ({children}) => {
                 handleAgregarPedido,
                 handleEditarCantidad,
                 handleEliminarProductoPedido,
-                total
+                total,
+                handleSubmitNuevaOrden
             }}
         >{children}</QuioscoContext.Provider>
     )
