@@ -21,6 +21,7 @@ const QuioscoProvider = ({children}) => {
     const obtenerCategorias = async () => {
         try {
             const token = localStorage.getItem('AUTH_TOKEN')
+            //const {data} = await clienteAxios('/api/v1/categories')
             const {data} = await clienteAxios('/api/v1/categories', {
                 headers: {
                     Authorization: `Bearer ${token}`
@@ -87,8 +88,10 @@ const QuioscoProvider = ({children}) => {
                     Authorization: `Bearer ${token}`
                 }
             })
+            // Obtener el ID de la orden recién creada
             const orderId = response.data.data.id
 
+            // Enviar cada producto en una solicitud separada
             for (const producto of pedido) {
                 const orderProduct = {
                     order_id: orderId,
@@ -97,7 +100,7 @@ const QuioscoProvider = ({children}) => {
                 };
 
                 await clienteAxios.post('/api/v1/ordersproducts', 
-                orderProduct,
+                orderProduct, // Enviar objeto directamente
                 {
                     headers: {
                         Authorization: `Bearer ${token}`
@@ -110,6 +113,48 @@ const QuioscoProvider = ({children}) => {
                 setPedido([])
             }, 1000);
 
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const handleClickCompletarPedido = async id => {
+        const token = localStorage.getItem('AUTH_TOKEN')
+        try {
+            await clienteAxios.put(`/api/v1/orders/${id}`, { status: 2 }, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+            console.log(id)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const handleClickCancelarPedido = async id => {
+        const token = localStorage.getItem('AUTH_TOKEN')
+        try {
+            await clienteAxios.delete(`/api/v1/orders/${id}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+            console.log(`Orden con id ${id} eliminada`)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const handleClickProductoAgotado = async id => {
+        const token = localStorage.getItem('AUTH_TOKEN')
+        try {
+            await clienteAxios.put(`/api/v1/products/${id}`, { status: 2 }, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+            console.log(id)
         } catch (error) {
             console.log(error)
         }
@@ -130,7 +175,10 @@ const QuioscoProvider = ({children}) => {
                 handleEditarCantidad,
                 handleEliminarProductoPedido,
                 total,
-                handleSubmitNuevaOrden
+                handleSubmitNuevaOrden,
+                handleClickCompletarPedido,
+                handleClickCancelarPedido,
+                handleClickProductoAgotado
             }}
         >{children}</QuioscoContext.Provider>
     )

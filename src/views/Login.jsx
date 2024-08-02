@@ -24,6 +24,19 @@ export default function Login() {
         }
         
         login(datos, setErrores)
+        /*try {
+            const respuesta = await clienteAxios.post('/api/v1/login', datos)
+            if (respuesta.data.success === false) {
+                console.log('Errores de validación:', Object.values(respuesta.data.data));
+                setErrores(Object.values(respuesta.data.data))  // Establecer los errores en el estado
+            } else {
+                //console.log(respuesta.data.data.access_token)
+                localStorage.setItem('AUTH_TOKEN', respuesta.data.data.access_token);
+                setErrores([])
+            }
+        } catch (error) {
+            console.log(error)
+        }*/
     }
 
     return (
@@ -71,7 +84,7 @@ export default function Login() {
               />
             </div>
 
-            <div className="mb-4 flex">
+            {/* <div className="mb-4 flex">
               <div className="inline-flex items-center w-full">
                 <label
                   className="relative flex cursor-pointer items-center rounded-full"
@@ -109,7 +122,7 @@ export default function Login() {
                   ¿Olvidó su contraseña?
                 </a>
               </div>
-            </div>
+            </div> */}
 
             <div className="flex justify-center items-center">
               <input

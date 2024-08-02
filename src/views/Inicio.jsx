@@ -19,7 +19,6 @@ export default function Inicio() {
     refreshInterval: 1000
   })
 
-  //console.log(data)
   if(isLoading) return 'Cargando...'
   if(error) return 'Ha ocurrido un error al cargar los productos.'
   const productos = data.data.models.filter(producto => producto.categorie_id === categoriaActual.id)
@@ -28,7 +27,7 @@ export default function Inicio() {
     <>
       <div className="flex">
         <div className="flex-1 p-4">
-        <h1 className="text-4xl font-bold">{categoriaActual.name}</h1>
+          <h1 className="text-4xl font-bold">{categoriaActual.name}</h1>
           <p className="text-2xl my-10">
           Elige y personaliza tu pedido a continuación.
           </p>
@@ -38,6 +37,7 @@ export default function Inicio() {
               <Producto 
                 key={producto.image} 
                 producto={producto} 
+                botonAgregar={true}
               />
             ))}
           </div>

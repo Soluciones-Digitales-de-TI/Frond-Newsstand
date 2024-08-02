@@ -25,7 +25,7 @@ export const useAuth = ({middleware, url}) => {
             const respuesta = await clienteAxios.post('/api/v1/login', datos)
             if (respuesta.data.success === false) {
                 console.log('Errores de validación:', Object.values(respuesta.data.data));
-                setErrores(Object.values(respuesta.data.data))  
+                setErrores(Object.values(respuesta.data.data))  // Establecer los errores en el estado
             } else {
                 localStorage.setItem('AUTH_TOKEN', respuesta.data.data.access_token);
                 setErrores([])
@@ -41,7 +41,7 @@ export const useAuth = ({middleware, url}) => {
             const respuesta = await clienteAxios.post('/api/v1/register', datos)
             if (respuesta.data.success === false) {
                 console.log('Errores de validación:', Object.values(respuesta.data.data));
-                setErrores(Object.values(respuesta.data.data)) 
+                setErrores(Object.values(respuesta.data.data))  // Establecer los errores en el estado
             } else {
                 localStorage.setItem('AUTH_TOKEN', respuesta.data.data.access_token);
                 setErrores([])
@@ -70,6 +70,15 @@ export const useAuth = ({middleware, url}) => {
         if(middleware === 'guest' && url && user) {
             navigate(url)
         }
+
+        if(middleware === 'guest' && user && user.admin) {
+            navigate('/admin')
+        }
+        
+        if(middleware === 'admin' && user && !user.admin) {
+            navigate('/')
+        }
+
         if(middleware === 'auth' && error) {
             navigate('/auth/login')
         }

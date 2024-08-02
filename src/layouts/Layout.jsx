@@ -23,13 +23,15 @@ Modal.setAppElement('#root')
 
 export default function Layout() {
 
-  const { user, error } = useAuth({middleware: 'auth'})
+  useAuth({middleware: 'auth'})
   const { modal } = useQuiosco();
 
   return (
     <>
       <div className='md:flex'>
-          <Sidebar />
+          <div className="h-screen overflow-y-scroll">
+            <Sidebar />
+          </div>
 
           <main className='flex-1 h-screen overflow-y-scroll bg-gray-50 p-3'>
             <Outlet />
