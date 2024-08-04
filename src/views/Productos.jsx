@@ -11,7 +11,7 @@ export default function Productos() {
       }
     }).then(datos => datos.data)
 
-    const { data, error, isLoading } = useSWR('/api/v1/products', fetcher, {refreshInterval: 10000})
+    const { data, error, isLoading } = useSWR('/api/v1/products', fetcher, {refreshInterval: 2000})
 
     if (isLoading) return 'Cargando...'
     if (error) return 'Hubo un error al cargar las órdenes'
@@ -29,6 +29,7 @@ export default function Productos() {
                   key={producto.image} 
                   producto={producto} 
                   botonDisponible={true}
+                  botonEliminar={true}
                 />
               ))}
           </div>

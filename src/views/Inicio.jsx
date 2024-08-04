@@ -19,6 +19,7 @@ export default function Inicio() {
     refreshInterval: 1000
   })
 
+  //console.log(data)
   if(isLoading) return 'Cargando...'
   if(error) return 'Ha ocurrido un error al cargar los productos.'
   const productos = data.data.models.filter(producto => producto.categorie_id === categoriaActual.id)

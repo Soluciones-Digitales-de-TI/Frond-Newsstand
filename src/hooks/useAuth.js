@@ -65,6 +65,18 @@ export const useAuth = ({middleware, url}) => {
             throw Error(respuesta?.data?.data)
         }
     }
+
+    const updateProduct = async (datos, id, setErrores) => {
+        try {
+            await clienteAxios.put(`/api/v1/products/${id}`, datos, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+        } catch (error) {
+            console.log(error)
+        }
+    }
     
     useEffect(() => {
         if(middleware === 'guest' && url && user) {
@@ -89,7 +101,8 @@ export const useAuth = ({middleware, url}) => {
         register,
         logout,
         user,
-        error
+        error,
+        updateProduct
     }
 
 }
